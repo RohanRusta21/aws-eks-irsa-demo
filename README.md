@@ -1,6 +1,10 @@
 # aws-eks-irsa-demo
 
 
+```
+eksctl utils associate-iam-oidc-provider --cluster eks-irsa-cluster  --approve --region us-east-2
+```
+
 
 ```
 {
