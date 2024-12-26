@@ -53,3 +53,7 @@ aws iam create-role --role-name role-irsa-demo --assume-role-policy-document fil
 ```
 aws iam attach-role-policy --role-name role-irsa-demo --policy-arn=arn:aws:iam::251620460948:policy/irsa-eks-demo-policy
 ```
+
+```
+kubectl annotate serviceaccount -n test nginx-sa eks.amazonaws.com/role-arn=arn:aws:iam::251620460948:role/role-irsa-demo
+```
