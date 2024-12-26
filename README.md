@@ -1,10 +1,13 @@
 # aws-eks-irsa-demo
 
 
+### Create an IAM OIDC identity provider for your cluster.
+
 ```
 eksctl utils associate-iam-oidc-provider --cluster eks-irsa-cluster  --approve --region us-east-2
 ```
 
+### Creating a policy where s3 bucket mentioned which has to be used by the pod.
 
 ```
 {
@@ -29,7 +32,8 @@ eksctl utils associate-iam-oidc-provider --cluster eks-irsa-cluster  --approve -
 
 ```
 
-# trust-relationship.json
+### trust-relationship.json
+
 ```
 {
   "Version": "2012-10-17",
@@ -52,13 +56,20 @@ eksctl utils associate-iam-oidc-provider --cluster eks-irsa-cluster  --approve -
 
 ```
 
+
+### Creating a role and appending the above trust policy.
+
 ```
 aws iam create-role --role-name role-irsa-demo --assume-role-policy-document file://trust-relationship.json --description "irsa role description"
 ```
 
+### Attaching the role witht the policy we created in above steps
+
 ```
 aws iam attach-role-policy --role-name role-irsa-demo --policy-arn=arn:aws:iam::251620460948:policy/irsa-eks-demo-policy
 ```
+
+### Appending Annotations in the ServiceAccount we have to use.
 
 ```
 kubectl annotate serviceaccount -n test nginx-sa eks.amazonaws.com/role-arn=arn:aws:iam::251620460948:role/role-irsa-demo
