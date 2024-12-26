@@ -44,4 +44,10 @@
   ]
 }
 
+
+```
+aws iam create-role --role-name role-irsa-demo --assume-role-policy-document file://trust-relationship.json --description "irsa role description"
+```
+
+
 ```
