@@ -3,16 +3,22 @@
 
 
 ```
-cat >my-policy.json <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::my-pod-secrets-bucket"
-        }
-    ]
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Allow",
+			"Action": [
+				"s3:ListBucket",
+				"s3:GetObject",
+				"s3:GetObjectVersion"
+			],
+			"Resource": [
+			    "arn:aws:s3:::eks-bucket-irsa-demo"
+			    ]
+		}
+	]
 }
-EOF
+
 ```
