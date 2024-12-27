@@ -7,7 +7,7 @@
 eksctl utils associate-iam-oidc-provider --cluster eks-irsa-cluster  --approve --region us-east-2
 ```
 
-### Creating a policy where s3 bucket mentioned which has to be used by the pod.
+### Creating a policy where s3 bucket mentioned which has to be used by the pod. (irsa-eks-demo-policy)
 
 ```
 {
